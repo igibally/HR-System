@@ -8,7 +8,7 @@ you can access the endpoints:
 
 http://localhot:8080/v1/employees  for (add-get) employees
 
-http://localhot:8080/v1/employees/1/state for (change-state) employee	
+http://localhot:8080/v1/employees/{id}/state for (change-state) employee	
  
 swagger documentation API
 
