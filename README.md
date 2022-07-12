@@ -1,10 +1,10 @@
-How to run
+How to run:
  
-docker build -t employee-managment-system  .
+1- docker build -t employee-managment-system  .
 
-docker compose-up
+2- docker compose-up
 
-you can access the 
+you can access the endpoints:
 
 http://localhot:8080/v1/employees  for (add-get) employees
 
