@@ -8,8 +8,8 @@ you can access the endpoints:
 
 http://localhot:8080/v1/employees  for (add-get) employees
 
-http://192.168.99.100:9090/v1/employees/1/state for (change-state) employee	
+http://localhot:8080/v1/employees/1/state for (change-state) employee	
  
-swagger documentation
+swagger documentation API
 
 http://localhot:8080/swagger-ui/index.html
