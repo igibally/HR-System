@@ -4,13 +4,12 @@ import com.workmotion.ems.domain.Employee;
 import com.workmotion.ems.domain.EmployeeState;
 import com.workmotion.ems.domain.EmployeeStateTransition;
 import com.workmotion.ems.repository.EmployeeRepository;
-import com.workmotion.ems.util.EmployeeStateChangeListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineFactory;
-import org.springframework.statemachine.support.DefaultStateMachineContext;
+import org.springframework.statemachine.service.StateMachineService;
 import org.springframework.stereotype.Service;
 
 
@@ -22,7 +21,11 @@ public class EmployeeStateTransitionServiceImpl implements EmployeStateTransitio
   public static final String EMPLOYEE_ID_HEADER = "employee_id";
 
   @Autowired
-  private EmployeeStateChangeListener employeeStateChangeListener;
+  private EmployeeStateChangeInterceptor employeeStateChangeInterceptor;
+
+
+  @Autowired
+  private StateMachineService<EmployeeState, EmployeeStateTransition> stateMachineService;
 
 
   @Autowired
@@ -37,10 +40,10 @@ public class EmployeeStateTransitionServiceImpl implements EmployeStateTransitio
   }
 
 
-  private void sendEvent(Long paymentId, StateMachine<EmployeeState, EmployeeStateTransition> sm,
+  private void sendEvent(Long employeeId, StateMachine<EmployeeState, EmployeeStateTransition> sm,
       EmployeeStateTransition stateTransition) {
     Message msg = MessageBuilder.withPayload(stateTransition)
-        .setHeader(EMPLOYEE_ID_HEADER, paymentId).build();
+        .setHeader(EMPLOYEE_ID_HEADER, employeeId).build();
     sm.sendEvent(msg);
 
   }
@@ -48,14 +51,10 @@ public class EmployeeStateTransitionServiceImpl implements EmployeStateTransitio
   private StateMachine<EmployeeState, EmployeeStateTransition> build(Long paymentId) {
     Employee employee = employeeRepository.getReferenceById(paymentId);
     StateMachine<EmployeeState, EmployeeStateTransition> sm =
-        stateMachineFactory.getStateMachine(Long.toString(employee.getId()));
-    sm.stop();
+        stateMachineService.acquireStateMachine(Long.toString(employee.getId()));
     sm.getStateMachineAccessor().doWithAllRegions(sma -> {
-      sma.addStateMachineInterceptor(employeeStateChangeListener);
-      sma.resetStateMachine(
-          new DefaultStateMachineContext<>(employee.getState(), null, null, null));
+      sma.addStateMachineInterceptor(employeeStateChangeInterceptor);
     });
-    sm.start();
     return sm;
   }
 }

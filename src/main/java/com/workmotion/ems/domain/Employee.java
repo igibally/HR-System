@@ -1,7 +1,8 @@
 package com.workmotion.ems.domain;
 
+import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,8 @@ public class Employee {
   @Id
   @GeneratedValue
   private Long id;
-  @Enumerated
-  private EmployeeState state;
+  @ElementCollection
+  private List<EmployeeState> state;
   private String name;
   private Integer age;
   private String phone;

@@ -34,17 +34,22 @@ public class EmployeeController {
     employeeService.create(employeeDTO);
   }
 
-  @GetMapping
-  @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeDTO> getAllEmployee() {
-    return employeeService.getAll();
-  }
-
   @PatchMapping("/{id}/state")
   @ResponseStatus(HttpStatus.OK)
   public void changeState(@RequestBody ChangeStateDTO changeStateDto, @PathVariable long id) {
     employeeStateTransitionService.transitState(id, changeStateDto.getStateTransition());
   }
 
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public List<EmployeeDTO> getAllEmployee() {
+    return employeeService.getAll();
+  }
 
+
+  @GetMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public EmployeeDTO getEmployeeById(@PathVariable long id) {
+    return employeeService.getById(id);
+  }
 }

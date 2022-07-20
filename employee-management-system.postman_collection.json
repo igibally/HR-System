@@ -23,18 +23,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://192.168.99.100:9090/v1/employees",
+					"raw": "http://localhost:8080/v1/employees/",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
-						"99",
-						"100"
+						"localhost"
 					],
-					"port": "9090",
+					"port": "8080",
 					"path": [
 						"v1",
-						"employees"
+						"employees",
+						""
 					]
 				}
 			},
@@ -69,6 +67,39 @@
 						"employees",
 						"1",
 						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"islamMostafaSayed ssws\",\r\n     \"age\":30,\r\n     \"phone\":\"02 23795862\",\r\n     \"address\":\"24 maadi st,cairo , egypt\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"employees",
+						"1"
 					]
 				}
 			},

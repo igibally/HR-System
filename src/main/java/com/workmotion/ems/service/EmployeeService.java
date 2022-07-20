@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface EmployeeService {
 
-  void create(EmployeeDTO employeeDTO);
+   public void create(EmployeeDTO employeeDTO);
 
-  List<EmployeeDTO> getAll();
+   public List<EmployeeDTO> getAll();
+
+   public EmployeeDTO getById(Long id);
 }

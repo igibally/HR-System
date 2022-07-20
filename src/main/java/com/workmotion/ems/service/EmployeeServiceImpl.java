@@ -6,6 +6,7 @@ import com.workmotion.ems.domain.EmployeeState;
 import com.workmotion.ems.dto.EmployeeDTO;
 import com.workmotion.ems.mapper.EmployeeMapper;
 import com.workmotion.ems.repository.EmployeeRepository;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   @Override
   public void create(EmployeeDTO employeeDTO) {
     Employee employee = EmployeeMapper.makeEmployee(employeeDTO);
-    employee.setState(EmployeeState.ADDED);
+    employee.setState(Collections.singletonList(EmployeeState.ADDED));
     employeeRepository.save(employee);
   }
 
@@ -29,5 +30,10 @@ public class EmployeeServiceImpl implements EmployeeService {
   public List<EmployeeDTO> getAll() {
     return employeeRepository.findAll().stream().map(emp -> EmployeeMapper.makeEmployeeDTO(emp))
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public EmployeeDTO getById(Long id) {
+    return EmployeeMapper.makeEmployeeDTO(employeeRepository.getReferenceById(id));
   }
 }
