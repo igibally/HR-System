@@ -26,24 +26,28 @@ The allowed state transitions within `IN_CHECK` state are:
 - `ACTIVATE`: `APROVED` -> `ACTIVE`
 
 How to run
+
  
-docker build -t employee-managment-system  .
+1- docker build -t employee-managment-system  .
+
 
 docker-compose up
 
-you can access the  endpoins:
+
+you can access the endpoints:
 
 http://ipaddress:8080/v1/employees  for (add-get) employees
 
+
 http://ipaddress:8080/v1/employees/1/state for (change-state) employee	
- 
-swagger documentation
+
+swagger documentation API
+
 
 http://ipaddress:8080/swagger-ui/index.html
 
 Provided PostMan collection for sample requet and response
 
 employee-management-system.postman_collection.json
-
 
 
