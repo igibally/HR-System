@@ -7,11 +7,8 @@
 	"item": [
 		{
 			"name": "employees",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -23,10 +20,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/employees/",
+					"raw": "http://192.168.99.100:8080/v1/employees/",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"99",
+						"100"
 					],
 					"port": "8080",
 					"path": [
@@ -100,6 +100,78 @@
 						"v1",
 						"employees",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.99.100:8080/v1/employees/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.100:8080/v1/employees/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"100"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all employees",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.99.100:8080/v1/employees/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"99",
+						"100"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"employees",
+						""
 					]
 				}
 			},

@@ -5,19 +5,14 @@ import com.workmotion.ems.domain.EmployeeState;
 import com.workmotion.ems.domain.EmployeeStateTransition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.statemachine.StateMachinePersist;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
-import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
 import org.springframework.statemachine.data.jpa.JpaPersistingStateMachineInterceptor;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
-import org.springframework.statemachine.service.DefaultStateMachineService;
-import org.springframework.statemachine.service.StateMachineService;
 import org.springframework.statemachine.state.State;
 
 
@@ -80,7 +75,7 @@ public class StateTransitionConfig extends
         .and()
         .withExternal()
         .source(EmployeeState.SECURITY_CHECK_STARTED).target(EmployeeState.SECURITY_CHECK_FINISHED)
-        .event(EmployeeStateTransition.FINISH_SECURITY_CHEK)
+        .event(EmployeeStateTransition.FINISH_SECURITY_CHECK)
         .and()
         .withExternal()
         .source(EmployeeState.WORK_PERMIT_CHECK_STARTED)

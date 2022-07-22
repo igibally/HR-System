@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.statemachine.StateMachine;
-import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.service.StateMachineService;
 
 @SpringBootTest
@@ -45,7 +44,7 @@ public class StateMachineConfigTest {
 
   @Test
   void testSuccessScenario() {
-    stateMachine.sendEvent(EmployeeStateTransition.FINISH_SECURITY_CHEK);
+    stateMachine.sendEvent(EmployeeStateTransition.FINISH_SECURITY_CHECK);
     stateMachine.sendEvent(EmployeeStateTransition.COMPLETE_INITIAL_WORK_PERMIT_CHECK);
     stateMachine.sendEvent(EmployeeStateTransition.FINISH_WORK_PERMIT_CHECK);
     stateMachine.sendEvent(EmployeeStateTransition.ACTIVATE);
@@ -54,7 +53,7 @@ public class StateMachineConfigTest {
 
   @Test
   void testFailedScenario() {
-    stateMachine.sendEvent(EmployeeStateTransition.FINISH_SECURITY_CHEK);
+    stateMachine.sendEvent(EmployeeStateTransition.FINISH_SECURITY_CHECK);
     boolean isChanged = stateMachine.sendEvent(EmployeeStateTransition.ACTIVATE);
     assertFalse(isChanged);
   }
