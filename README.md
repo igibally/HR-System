@@ -44,14 +44,21 @@ docker-compose up
 
 you can access the endpoints:
 
-http://ipaddress:8080/v1/employees  for (add-get) employees
+POST
+http://ipaddress:8080/v1/employees  TO add employees
+
+GET
+http://ipaddress:8080/v1/employees  TO get employees
+
+
+GET
+http://ipaddress:8080/v1/employees/{id} TO get employee by id
+
 
 
 http://ipaddress:8080/v1/employees/1/state for (change-state) employee	
 
 swagger documentation API
-
-
 http://ipaddress:8080/swagger-ui/index.html
 
 Provided PostMan collection for sample  for each request "create employee" ,"list all employees" "get employee by id"
